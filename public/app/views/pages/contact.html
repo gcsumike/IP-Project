@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	 <link rel="stylesheet" type="text/stylesheet" href="../css/w3.css" />
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Tennille United Methodist</title>
+	
+	<style>
+	 .image {
+		background-image: url("../images/sky.jpg");
+		background-size: 100% 100%;
+	 }
+	 .paper {
+		background-image: url("../images/paper.png");
+	 }
+	 .border {
+		border: solid 5px;
+	 }
+	 .center{
+		display: block;
+		margin: 0 auto;
+	 }
+	 .textshadow {
+		text-shadow: 2px 2px 4px #000000;
+	 }
+	 .table-content {
+		padding: 200px;
+	 
+	 td {
+		padding: 20px;
+	 }
+	 table {
+		min-height: 850px;
+	 }
+	
+	</style>
+  </head>
+  <body class="container paper" style="background-color: grey;">
+		<div id="content" class="container" style="background: white; padding: 25px">
+			<div class="row">
+				<div class="col-sm-8">
+					<!--CONTENT HERE-->
+					<h2>Contact Us</h2>
+					<form>
+					
+						<table style="height: 600px; padding: 20px;">
+							<tr>
+								<td><label for="fname">First Name: </label></td>
+								<td><input id="fname" type="text" /></td>
+								<td><label for="lname">Last Name: </label></td>
+								<td><input id="lname" type="text" /></td>
+							</tr>
+							<tr>
+								<td><label for="email">Email: </label></td>
+								<td colspan="3"><input style="width: 100%;" id="email"  type="text" /></td>
+							</tr>
+							<tr>
+								<td><label for="subject">Subject: </label></td>
+								<td colspan="3"><input style="width: 100%;" id="subject"  type="text" /></td>
+								
+							</tr>
+							<tr>
+								<td><label for="message">Message: </label></td>
+								<td height="400px" colspan="4"><textarea id="message" style="width: 100%; height: 100%;resize: none; "></textarea></td>
+							</tr>
+						
+						</table>
+				
+					
+					
+					</form>
+					<button id="send" class="btn btn-primary" style="display: block">Send</button>
+					
+				</div>
+				
+			</div>
+		
+		</div>
+		<footer class="footer container" style="background: blue; padding: 20px; color: white"><b>Tennille United Methodist Church</b> | 210 Smith Street Tennille, Georgia 31089 | Phone: 478-552-7811</footer>
+</div>
+  </body>
+</html>
