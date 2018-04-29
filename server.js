@@ -1,7 +1,7 @@
 
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 30000;
+var port = process.env.PORT || 30000; //changed from 8080 for testing will need to be changed back later
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var router = express.Router();

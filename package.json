@@ -16,5 +16,13 @@
     "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.14",
     "morgan": "^1.9.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gcsumike/IP-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gcsumike/IP-Project/issues"
+  },
+  "homepage": "https://github.com/gcsumike/IP-Project#readme"
 }
