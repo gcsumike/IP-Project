@@ -22,8 +22,4 @@ angular.module('userControllers',['userServices'])
 			}
 		});
 	}
-	
-	
-	
-	
 });

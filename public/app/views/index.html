@@ -90,11 +90,12 @@
     <li class="nav-item">
         <a class="nav-link" ng-show="!main.username" href="#/login">Login</a>
       </li>
-	  
+      <li class="nav-item">
+        <a class="nav-link" ng-show="main.isLoggedIn" href="#/profile">My Profile</a>
+      </li>
     <li class="nav-item" ng-click = "main.logout();">
         <a class="nav-link" ng-show="main.username" href="#/logout">Logout</a>
       </li>
-	  <li><a href="#">{{main.username}}</a></li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
