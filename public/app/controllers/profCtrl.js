@@ -1,6 +1,6 @@
-angular.module('userControllers',['userServices'])
+angular.module('profiles',[])
 
-.controller('regCtrl', function($http, $location, $timeout, User){
+.controller('profileCtrl', function($http, $location, $timeout, User){
 
 	var app = this;
 	
@@ -22,8 +22,4 @@ angular.module('userControllers',['userServices'])
 			}
 		});
 	}
-	
-	
-	
-	
 });

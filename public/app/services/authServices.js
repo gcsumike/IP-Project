@@ -1,18 +1,23 @@
+
+//purpose: user authentication
+
 angular.module('authServices',[])
 
-	.factory('Auth', function($http, AuthToken){
+	.factory('Auth', function($http, $q, AuthToken){
 			authFactory = {};
-
-			// User.create(regData);
+			
+			
 			authFactory.login = function(loginData){
+				
 				return $http.post('/api/authenticate', loginData).then(function(data){
-					console.log(data.data.token);
+					//get the token
 					AuthToken.setToken(data.data.token);
 					return data;
 				});
 			}
-
+			//Auth.isLoggedIn()
 			authFactory.isLoggedIn = function(){
+				console.log(AuthToken.getToken());
 				if(AuthToken.getToken()){
 					return true;
 				} else {
@@ -20,7 +25,7 @@ angular.module('authServices',[])
 				}
 			}
 			//Auth.getUser()
-			authFactory.getUser = function(){
+			authFactory.getUser = function($q){
 				if(AuthToken.getToken()){
 					return $http.post('/api/me');
 				} else {
@@ -36,36 +41,37 @@ angular.module('authServices',[])
 			return authFactory;
 	})
 
-	.factory('AuthToken', function(){
+	.factory('AuthToken', function($window){
 		var authTokenFactory = {};
 
 		// AuthToken.setToken(token);
 		authTokenFactory.setToken = function(token){
 			if(token){
-				localStorage.setItem('token', token);
+				$window.localStorage.setItem('token', token);
 			} else {
-				localStorage.removeItem('token');
+				$window.localStorage.removeItem('token');
 			}
 		}
 
 		// AuthToken.getToken();
-		authTokenFactory.getToken = function($window){
-			return localStorage.getItem('token');
+		authTokenFactory.getToken = function(){
+			return $window.localStorage.getItem('token');
 		}
 
 		return authTokenFactory;
 	})
 
-	.factory('AuthInterceptor', function(){
+	.factory('AuthInterceptor', function(AuthToken){
 		var authInterceptorFactory = {};
 
 		authInterceptorFactory.request = function(config){
 			var token = AuthToken.getToken();
+			
+			//assigning token to headers
+			if(token) config.headers['x-access-token'] = token;
 
 			return config;
 		}
-
-
-
+		
 		return authInterceptorFactory;
 	});

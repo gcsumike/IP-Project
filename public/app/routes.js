@@ -1,3 +1,5 @@
+
+//angular appRoutes http requests are handled and the templete needed is passed 
 angular.module('appRoutes',['ngRoute'])
 .config(function($routeProvider){
 	$routeProvider
@@ -8,8 +10,9 @@ angular.module('appRoutes',['ngRoute'])
 
 	.when('/home',{
 		templateUrl: 'app/views/pages/home.html'
+		
 	})
-
+	
 	.when('/contact',{
 		templateUrl: 'app/views/pages/contact.html'
 	})
@@ -34,12 +37,14 @@ angular.module('appRoutes',['ngRoute'])
 		templateUrl: 'app/views/pages/users/logout.html'
 	})
 
-
 	.when('/register',{
 		templateUrl: 'app/views/pages/users/register.html',
 		controller: 'regCtrl',
 		controllerAs: 'register'
 	})
+	
+	
+	
 
 	.otherwise({redirectTo: '/'});
 

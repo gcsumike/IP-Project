@@ -1,20 +1,33 @@
+/*
+	Server.js
+	Autors: Andrew Newmark, Michael New
+	Date: ....
+	Purpose: Node express server for the TMC website appication
+*/
 
-var express = require('express');
+//Packages
+var express = require('express'); //express object
 var app = express();
-var port = process.env.PORT || 30000; //changed from 8080 for testing will need to be changed back later
-var morgan = require('morgan');
-var mongoose = require('mongoose');
-var router = express.Router();
-var appRoutes = require('./app/routes/api')(router);
+var morgan = require('morgan'); //request logger, outputs a log of requests sent to the server in the console
+var mongoose = require('mongoose'); //mongo db handler
+var router = express.Router();// route handler
+var appRoutes = require('./app/routes/api')(router);//path to routes, api.js, (router) tells this to use the router object for routes
 var bodyParser = require('body-parser');
 var path = require('path');
 
+
+//middle ware
 app.use(morgan('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json());//parses body data into json
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
-app.use('/api', appRoutes);
+app.use('/api', appRoutes);//route for backend requests
 
+//variables
+var port = process.env.PORT || 30000; //changed from 8080 for testing will need to be changed back later
+
+
+//database connection using mongoose
 mongoose.connect('mongodb://localhost:27017/website', function(err){
 	if(err){
 		console.log("Not connected to database: " + err);
@@ -23,10 +36,12 @@ mongoose.connect('mongodb://localhost:27017/website', function(err){
 	}
 });
 
+//for any path not specifially handled in routes default to index.html
 app.get('*',function(req,res){
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
 
+//listen on port
 app.listen(port, function(){
 	console.log("Server running on " + port);
 });

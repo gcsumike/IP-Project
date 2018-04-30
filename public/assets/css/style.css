@@ -32,3 +32,30 @@ header .navbar{
 	from {-moz-transform:rotate(0deg);}
 	to {-moz-transform:rotate(360deg);}
 }
+
+.image {
+		background-image: url("../images/sky.jpg");
+		background-size: 100% 100%;
+	 }
+	 .paper {
+		background-image: url("../images/paper.png");
+	 }
+	 .border {
+		border: solid 5px;
+	 }
+	 .center{
+		display: block;
+		margin: 0 auto;
+	 }
+	 .textshadow {
+		text-shadow: 2px 2px 4px #000000;
+	 }
+	 .table-content {
+		padding: 200px;
+	 
+	 td {
+		padding: 20px;
+	 }
+	 table {
+		min-height: 850px;
+	 }

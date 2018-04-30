@@ -1,12 +1,14 @@
 angular.module('mainController',['authServices'])
 
-.controller('mainCtrl', function($http, $timeout, $location, Auth){
+.controller('mainCtrl', function($http,$window, $timeout, $location, Auth){
 	var app = this;
 	
 	if(Auth.isLoggedIn()){
 		console.log("user is logged in");
 		Auth.getUser().then(function(data){
-			console.log(data);
+			console.log(data.data.username);
+			
+			app.username = data.data.username;
 		});
 	} else {
 		console.log("user is not logged in");
@@ -21,8 +23,8 @@ angular.module('mainController',['authServices'])
 				app.loading = false;
 				app.successMsg = data.data.message = '...Redirecting to home';
 				$timeout(function(){
-					$location.path('/');
-				}, 1000);
+					$window.location.href = '/'
+				}, 2000);
 			} else{
 				app.loading = false;
 				app.errorMsg = data.data.message;
@@ -35,7 +37,8 @@ angular.module('mainController',['authServices'])
 		Auth.logout();
 		$location.path('/logout');
 		$timeout(function() {
-			$location.path('/');
+			$window.location.href = '/'
+			
 		}, 2000);
 	}
 	
