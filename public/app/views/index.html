@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+  
+	<base href="/">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,8 +31,11 @@
   <script src="app/routes.js"></script>
   <script src="app/controllers/userCtrl.js"></script>
   <script src="app/controllers/mainCtrl.js"></script>
+  <script src="app/controllers/conCtrl.js"></script>
+  
   <script src="app/services/userServices.js"></script>
   <script src="app/services/authServices.js"></script>
+  <script src="app/services/contactServices.js"></script>
 
 
 
@@ -62,37 +67,37 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#/home">Home</a>
+        <a class="nav-link" href="/home">Home</a>
       </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           TUMC
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#/history">TUMC History</a>
-          <a class="dropdown-item" href="#/sermons">TUMC Sermons</a>
-          <a class="dropdown-item" href="#">TUMC Ministries</a>
-        <a class="dropdown-item" href="#">TUMC Music</a>
-        <a class="dropdown-item" href="#">TUMC Special Services</a>
+          <a class="dropdown-item" href="/history">TUMC History</a>
+          <a class="dropdown-item" href="/sermons">TUMC Sermons</a>
+          <a class="dropdown-item" href="">TUMC Ministries</a>
+        <a class="dropdown-item" href="">TUMC Music</a>
+        <a class="dropdown-item" href="">TUMC Special Services</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#/contact">Contact Us</a>
+        <a class="nav-link" href="/contact">Contact Us</a>
       </li>
       
     
     <li class="nav-item">
-        <a class="nav-link" href="#/newsletter">Newletters</a>
+        <a class="nav-link" href="/newsletter">Newletters</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" ng-show="!main.username" href="#/register">Register</a>
+        <a class="nav-link" ng-show="!main.username" href="/register">Register</a>
       </li>
     <li class="nav-item">
-        <a class="nav-link" ng-show="!main.username" href="#/login">Login</a>
+        <a class="nav-link" ng-show="!main.username" href="/login">Login</a>
       </li>
 	  
     <li class="nav-item" ng-click = "main.logout();">
-        <a class="nav-link" ng-show="main.username" href="#/logout">Logout</a>
+        <a class="nav-link" ng-show="main.username" href="/logout">Logout</a>
       </li>
 	  <li><a href="#">{{main.username}}</a></li>
     </ul>

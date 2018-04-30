@@ -36,6 +36,10 @@ mongoose.connect('mongodb://localhost:27017/website', function(err){
 	}
 });
 
+app.get('/users',function(req,res){
+	res.redirect('/api/users');
+});
+
 //for any path not specifially handled in routes default to index.html
 app.get('*',function(req,res){
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));

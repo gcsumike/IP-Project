@@ -6,6 +6,7 @@ var bcrypt = require('bcrypt-nodejs');
 //Mongo db schema controls how data is organized with the DB
 //UserSchema determines what attributes a User has in the DB
 var UserSchema = new Schema({
+	_id: {type: mongoose.Schema.ObjectId, select: false},
 	username: {type: String, lowercase: true, required: true, unique: true},
 	password: {type: String, required: true},
 	email: {type: String, required: true, lowercase: true, unique: true}

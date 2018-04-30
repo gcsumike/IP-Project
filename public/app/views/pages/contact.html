@@ -22,35 +22,50 @@
 				<div class="col-sm-8">
 					<!--CONTENT HERE-->
 					<h2>Contact Us</h2>
-					<form>
+					<form ng-submit="contact.sendMsg(conData)">
 					
 						<table style="height: 600px; padding: 20px;">
 							<tr>
 								<td><label for="fname">First Name: </label></td>
-								<td><input id="fname" type="text" /></td>
+								<td><input id="fname" type="text" ng-model="contact.conData.firstName" /></td>
 								<td><label for="lname">Last Name: </label></td>
-								<td><input id="lname" type="text" /></td>
+								<td><input id="lname" type="text" ng-model="contact.conData.lastName" /></td>
 							</tr>
 							<tr>
 								<td><label for="email">Email: </label></td>
-								<td colspan="3"><input style="width: 100%;" id="email"  type="text" /></td>
+								<td colspan="3"><input style="width: 100%;" id="email"  type="email" ng-model="contact.conData.email"  /></td>
 							</tr>
 							<tr>
 								<td><label for="subject">Subject: </label></td>
-								<td colspan="3"><input style="width: 100%;" id="subject"  type="text" /></td>
+								<td colspan="3"><input style="width: 100%;" id="subject"  type="text" ng-model="contact.conData.subject" /></td>
 								
 							</tr>
 							<tr>
 								<td><label for="message">Message: </label></td>
-								<td height="400px" colspan="4"><textarea id="message" style="width: 100%; height: 100%;resize: none; "></textarea></td>
+								<td height="400px" colspan="4"><textarea id="message" style="width: 100%; height: 100%;resize: none; " ng-model="contact.conData.message"></textarea></td>
 							</tr>
 						
 						</table>
 				
 					
-					
+					<button type="submit" class="btn btn-primary" style="display: block">Send</button>
 					</form>
-					<button id="send" class="btn btn-primary" style="display: block">Send</button>
+					
+					
+					<div class="jumbotron text-center" ng-show="contact.loading">
+						<span class="glyphicon glyphicon-repeat spinner">Loading...</span>
+					</div>
+
+					<div class="row show-hide-message" ng-show="contact.successMsg">
+						<div class="alert alert-success">{{contact.successMsg}}</div>
+					</div>
+
+					<br>
+
+					<div class="row show-hide-message" ng-show="contact.errorMsg">
+						<div class="alert alert-danger">{{contact.errorMsg}}</div>
+					</div>
+					
 					
 				</div>
 				

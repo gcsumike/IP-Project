@@ -1,5 +1,6 @@
 
 var User = require('../models/user'); //require the User schema created in user.js, so we can use it here
+var Msg = require('../models/message');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken'); //json web tokens to keep user logged in
 var secret = 'clizby';
@@ -10,19 +11,58 @@ var secret = 'clizby';
 module.exports = function(router) {
 	
 	
-	//sending user data....
+	
+	//insert the message into the DB
+	// /api/contact
+	router.post('/contact', function(req, res){
+		console.log(" posting message");
+		var msg = new Msg(); //create new message to send
+		
+		//get data from req
+		msg.firstName = req.body.firstName;
+		msg.lastName = req.body.lastName;
+		msg.email = req.body.email;
+		msg.subject = req.body.subject;
+		msg.message = req.body.message;
+		//validate all data is there, subject is not required
+		if(msg.firstName == null || msg.lastName == null || msg.email == null || msg.message == null){
+			//send error message, fill all require fields 
+			console.log(" fields missing");
+			res.json({success: false, message: "Please fill out each required field."});
+			
+		}
+		else{
+			console.log(" attempting to save");
+			//send data to mongoose
+			msg.save(function(err){
+				
+				if(err){
+					console.log(" failed saving");
+					res.json({success: false, message: 'Sorry, message could not be sent.'});
+				} else{
+					console.log(" success saving");
+					res.json({success: true, message: 'Message sent.'});
+				}
+				
+			});
+			
+		}
+				
+	});
+	
+	//get all users data....
 	router.get('/users', function(req, res){
+		
+		console.log("getting users");
+		
 		var user = new User();
 		
-		User.find().select('username').exec(function(err, user){			
+		User.find().select('_id : 0, username ').exec(function(err, user){			
 			res.json(user);
 		})
 		
 	});
 
-	
-	
-	
 	// USER REGISTRATION ROUTE : https://localhost:8080/api/users
 	router.post('/users',function(req,res){
 	
@@ -55,6 +95,8 @@ module.exports = function(router) {
 
 	// USER LOGIN ROUTE : https://localhost:8080/api/authenticate
 	router.post('/authenticate', function(req,res){
+		
+		console.log("authenticate");
 		User.findOne({username: req.body.username}).select('email username password').exec(function(err, user){
 			if(err) throw err;
 
@@ -97,7 +139,14 @@ module.exports = function(router) {
 			res.json({success: false, message: "No token provided"});
 		}
 	})
-
+	
+	
+	
+	
+	
+	
+	
+	//get the currently logged in user 
 	router.post('/me', function(req,res){
 		res.send(req.decoded);
 	})

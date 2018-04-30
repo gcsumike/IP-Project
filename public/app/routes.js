@@ -1,7 +1,7 @@
 
 //angular appRoutes http requests are handled and the templete needed is passed 
 angular.module('appRoutes',['ngRoute'])
-.config(function($routeProvider){
+.config(function($routeProvider, $locationProvider){
 	$routeProvider
 
 	.when('/',{
@@ -11,10 +11,6 @@ angular.module('appRoutes',['ngRoute'])
 	.when('/home',{
 		templateUrl: 'app/views/pages/home.html'
 		
-	})
-	
-	.when('/contact',{
-		templateUrl: 'app/views/pages/contact.html'
 	})
 
 	.when('/history',{
@@ -43,17 +39,19 @@ angular.module('appRoutes',['ngRoute'])
 		controllerAs: 'register'
 	})
 	
-	
+	.when('/contact',{
+		templateUrl: 'app/views/pages/contact.html',
+	    controller: 'conCtrl',
+	    controllerAs: 'contact'
+	})
 	
 
 	.otherwise({redirectTo: '/'});
 
 
+	$locationProvider.html5Mode({
+		enabled: true,
+		requirebase: false
+	});
 
-
-
-
-
-
-	console.log("routes work");
 })
