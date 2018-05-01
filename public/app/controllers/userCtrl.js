@@ -13,6 +13,7 @@ angular.module('userControllers',['userServices'])
 			
 			//if successfully added the user stop loading and send success msg
 			if(data.data.success){
+				console.log("reg success")
 				app.loading = false;
 				app.successMsg = data.data.message = '...Redirecting to home';
 				//wait alittle
@@ -20,6 +21,7 @@ angular.module('userControllers',['userServices'])
 					$location.path('/'); //redirect to the home index
 				}, 1000);
 			} else{
+				console.log("reg fail")
 				app.loading = false;
 				app.errorMsg = data.data.message;
 

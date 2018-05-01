@@ -32,6 +32,10 @@ angular.module('appRoutes',['ngRoute'])
 	.when('/logout',{
 		templateUrl: 'app/views/pages/users/logout.html'
 	})
+	
+	.when('/profile',{
+		templateUrl: 'app/views/pages/users/profile.html'
+	})
 
 	.when('/register',{
 		templateUrl: 'app/views/pages/users/register.html',

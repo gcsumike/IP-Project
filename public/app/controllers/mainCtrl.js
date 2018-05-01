@@ -1,14 +1,28 @@
 angular.module('mainController',['authServices'])
 
-.controller('mainCtrl', function($http,$window, $timeout, $location, Auth){
+.controller('mainCtrl', function($http, $scope, $window, $timeout, $location, Auth){
 	var app = this;
 	
 	if(Auth.isLoggedIn()){
 		console.log("user is logged in");
 		Auth.getUser().then(function(data){
-			console.log(data.data.username);
 			
 			app.username = data.data.username;
+			app.email = data.data.email;
+
+			$http({
+				method: 'GET',
+				url: '/api/users',
+			}).then(function successCallback(response){
+				$scope.profiles = response.data
+			}, function errorCallback(response){
+				console.log("After request Fail")
+				$scope.profiles = []
+		
+				$scope.msg = 'Profiles'
+		
+			})
+			
 		});
 	} else {
 		console.log("user is not logged in");

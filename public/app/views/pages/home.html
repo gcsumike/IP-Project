@@ -23,6 +23,9 @@
 				</div>
 				<div class="w3-card col-sm-4 border" ng-show="main.username">
 					<p>Community</p>
+					<div ng-repeat="profile in profiles track by $index">
+						<a href="#" ng-model="profile.username">{{profile.username | uppercase}}</a>
+					</div>
 				</div>
 			</div>
 </body>
