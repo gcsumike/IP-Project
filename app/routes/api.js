@@ -57,11 +57,31 @@ module.exports = function(router) {
 		
 		var user = new User();
 		
-		User.find().select('_id : 0, username ').exec(function(err, user){			
+		User.find().select('_id : 0, username email msg ').exec(function(err, user){			
 			res.json(user);
 		})
 		
 	});
+	
+	//update user information route
+	router.post('/updateUser', function(req, res){
+		console.log(req.body.username);
+		console.log(req.body.email);
+		var user = new User();
+		
+		var query = {username : req.body.username}
+		
+		User.update(query, {email : req.body.email, msg : req.body.msg}, function(err, numEffected){
+			if(err) {
+				res.json({success: false, message: 'An unexpected error has occured'});
+			}
+			else { 
+				res.json({success: true, message: 'Profile updated.'})
+				}
+		});
+		
+	})
+	
 
 	// USER REGISTRATION ROUTE : https://localhost:8080/api/users
 	router.post('/users',function(req,res){
@@ -96,8 +116,8 @@ module.exports = function(router) {
 	// USER LOGIN ROUTE : https://localhost:8080/api/authenticate
 	router.post('/authenticate', function(req,res){
 		
-		console.log("authenticate");
-		User.findOne({username: req.body.username}).select('email username password').exec(function(err, user){
+		console.log("authenticating");
+		User.findOne({username: req.body.username}).select('email username password msg').exec(function(err, user){
 			if(err) throw err;
 
 			if(!user){
@@ -109,7 +129,7 @@ module.exports = function(router) {
 					if(!validPassword){
 					res.json({success: false, message: 'Could not authenticate password'});
 					} else {
-						var token = jwt.sign({ username: user.username, email: user.email }, secret, {expiresIn: '24h'});
+						var token = jwt.sign({ username: user.username, email: user.email, msg: user.msg }, secret, {expiresIn: '24h'});
 						res.json({success: true, message: 'User authenticated', token: token});
 					}					
 				} else{
@@ -120,6 +140,7 @@ module.exports = function(router) {
 			}
 		})
 	});
+
 
 	router.use(function(req, res, next){
 		//get token, can get the token from one of three locations, req, url, or headers

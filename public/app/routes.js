@@ -34,7 +34,15 @@ angular.module('appRoutes',['ngRoute'])
 	})
 	
 	.when('/profile',{
-		templateUrl: 'app/views/pages/users/profile.html'
+		templateUrl: 'app/views/pages/users/profile.html',
+		controller: 'regCtrl',
+		controllerAs: 'profile'
+	})
+	
+	.when('/otherProfile',{
+		templateUrl: 'app/views/pages/users/otherprofile.html',
+		controller: 'regCtrl',
+		controllerAs: 'profile'
 	})
 
 	.when('/register',{

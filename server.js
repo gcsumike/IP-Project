@@ -2,7 +2,7 @@
 	Server.js
 	Autors: Andrew Newmark, Michael New
 	Date: ....
-	Purpose: Node express server for the TMC website appication
+	Purpose: Node express server for the TMC website application
 */
 
 //Packages
@@ -15,6 +15,7 @@ var appRoutes = require('./app/routes/api')(router);//path to routes, api.js, (r
 var bodyParser = require('body-parser');
 var path = require('path');
 
+ 
 
 //middle ware
 app.use(morgan('dev'));
@@ -24,7 +25,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api', appRoutes);//route for backend requests
 
 //variables
-var port = process.env.PORT || 30000; //changed from 8080 for testing will need to be changed back later
+var port = process.env.PORT || 4000; //changed from 8080 for testing will need to be changed back later
 
 
 //database connection using mongoose

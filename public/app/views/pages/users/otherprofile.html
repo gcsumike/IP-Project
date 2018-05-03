@@ -1,0 +1,25 @@
+<div ng-show="!main.username"><H1>Opps, nothing to see here!</h1></div>
+<div ng-show="main.username" class = "page-header">
+	<h1>{{ main.username }}'s Profile</h1>
+</div>
+
+<div ng-show="main.username" class="panel panel-info">
+	<!--<div class="panel-heading" style="text-align: center;"><strong>User Profile</strong></div>-->
+
+	<table class="table">
+		<tr>
+			<td><strong>Username</strong></td>
+			<td><strong>Email Address</strong></td>
+		</tr>
+		<tr>
+			<td>{{main.profUser.username}}</td>
+			<td>{{main.profUser.email}}</td>
+		</tr>
+		<tr>
+			<td>
+				Message
+			</td>
+			<td colspan="2">{{main.profUser.msg}}</td>
+		<tr>
+	</table>
+</div>

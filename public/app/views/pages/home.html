@@ -15,18 +15,21 @@
 
 					<p><b>Watch live at</b></p> 
 
-					<p><a href="#">http://www.citylinktv.com/channel/tennille-united-methodist-church/</a></p>
+					<p><a href="http://www.citylinktv.com/channel/tennille-united-methodist-church/">http://www.citylinktv.com/channel/tennille-united-methodist-church/</a></p>
 
 					<p><b>Listen live on the Radio:   WSNT AM 1490</b></p>
 					
 					<img class="center" src="../assets/images/img.jpg"/>
 				</div>
-				<div class="w3-card col-sm-4 border" ng-show="main.username">
+				<div class="w3-card col-sm-4 border" style="overflow: auto" ng-show="main.username">
 					<p>Community</p>
 					<div ng-repeat="profile in profiles track by $index">
-						<a href="#" ng-model="profile.username">{{profile.username | uppercase}}</a>
+						<a href="" ng-click="loadProfile(profile.username)" ng-model="profile.username">{{profile.username | uppercase}}</a>
 					</div>
 				</div>
 			</div>
+			<script>
+			
+			</script>
 </body>
 </html>

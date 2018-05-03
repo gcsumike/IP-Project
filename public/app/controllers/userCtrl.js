@@ -1,6 +1,6 @@
 angular.module('userControllers',['userServices'])
 
-.controller('regCtrl', function($http, $location, $timeout, User){
+.controller('regCtrl', function($http, $window, $location, $timeout, User){
 
 	var app = this; //for creating variables
 	
@@ -27,6 +27,31 @@ angular.module('userControllers',['userServices'])
 
 			}
 		});
+	}
+	
+	//update user information
+	this.updateUser = function(user, mail, message){
+		app.errorMsg = false;
+		app.loading = true;
+		app.regData = {username : user, email : mail, msg : message}
+		User.update(app.regData).then(function(data) {
+			
+			if(data.data.success){
+				console.log('update success');
+				app.loading = false;
+				app.successMsg = data.data.message = '...Redirection to home'
+				
+				$timeout(function(){
+					$window.location.href = '/';
+				}, 1000);
+			}else {
+				console.log('Update failed');
+				app.loading = false;
+				app.errorMsg = data.data.message;
+			}
+			
+		})
+		
 	}
 	
 	

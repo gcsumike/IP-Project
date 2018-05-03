@@ -3,23 +3,35 @@ angular.module('mainController',['authServices'])
 .controller('mainCtrl', function($http, $scope, $window, $timeout, $location, Auth){
 	var app = this;
 	
+	
+	$scope.loadProfile = function(index){
+		
+		var n = $scope.profiles.findIndex(item => item.username === index);
+
+		app.profUser = $scope.profiles[n];
+		
+		if(app.profUser){
+			$location.path('/otherProfile');
+		}else{console.log("An unexpected error has occured")}
+		
+	}
+	
 	if(Auth.isLoggedIn()){
 		console.log("user is logged in");
 		Auth.getUser().then(function(data){
 			
 			app.username = data.data.username;
 			app.email = data.data.email;
-
+			app.msg = data.data.msg;
 			$http({
 				method: 'GET',
 				url: '/api/users',
 			}).then(function successCallback(response){
 				$scope.profiles = response.data
 			}, function errorCallback(response){
-				console.log("After request Fail")
 				$scope.profiles = []
 		
-				$scope.msg = 'Profiles'
+				$scope.msg = 'Could not get user'
 		
 			})
 			
@@ -47,6 +59,8 @@ angular.module('mainController',['authServices'])
 		});
 	}
 
+	
+	
 	this.logout = function(){
 		Auth.logout();
 		$location.path('/logout');

@@ -1,10 +1,11 @@
+
+<div ng-show="!main.username"><H1>Opps, nothing to see here!</h1></div>
+<div ng-show="main.username" class="panel panel-info">
 <div class = "page-header">
 	<h1>{{ main.username }}'s Profile</h1>
 </div>
-
-<div class="panel panel-info">
 	<div class="panel-heading" style="text-align: center;"><strong>User Profile</strong></div>
-
+	<form ng-submit="profile.updateUser(main.username, main.email, main.msg);">
 	<table class="table">
 		<tr>
 			<td><strong>Username</strong></td>
@@ -12,9 +13,103 @@
 			<td><strong>Password</strong></td>
 		</tr>
 		<tr>
-			<td>{{ main.username }}</td>
-			<td>{{ main.email }}</td>
-			<td>****</td>
+			<td><input disabled id="username" type="text" ng-model="main.username"></input></td>
+			<td><input id="email" type="text" ng-model="main.email"></input></td>
+			<td><button type="button" id="changePassBtn" class="btn btn-primary">Change</button></td>
 		</tr>
+		<tr>
+			<td>
+				Message
+			</td>
+			<td colspan="2"><textarea style="width: 100%; height: 400px" ng-model="main.msg"></textarea></td>
+		<tr>
+		
+	
 	</table>
+	<div style="text-align: center"><button class="btn btn-primary" type="submit" style="width: 15%">Update</button></div>
+	</form>
+
+<!-- The Modal -->
+<div id="passModal" class="modal">
+
+  <div class="modal-content">
+    <span style="text-align: right" class="close">Close</span>
+    <p><strong>Change Password</strong></p>
+	<form >
+		<table style="height: 200px; padding: 20px;">
+			<tr>
+				<td style="text-align: right"><i>Old Password: </i></td>
+				<td style="padding-left: 10px"><input ng-model="main.AuthData.pass" type="password"></input></td>
+			</tr>
+			<tr>
+				<td style="text-align: right"><i>New Password: </i></td>	
+				<td style="padding-left: 10px"><input type="password"></input></td>
+			</tr>
+			<tr>
+				<td style="text-align: right"><i>Reenter New Password: </i></td>		
+				<td style="padding-left: 10px"><input type="password"></input></td>
+			</tr>
+			
+		</table>
+		<button disabled class="btn btn-primary">Submit</button>
+		<div class="jumbotron text-center" ng-show="profile.loading">
+						<span class="glyphicon glyphicon-repeat spinner">Loading...</span>
+					</div>
+
+					<div class="row show-hide-message" ng-show="contact.successMsg">
+						<div class="alert alert-success">{{profile.successMsg}}</div>
+					</div>
+
+					<br>
+
+					<div class="row show-hide-message" ng-show="contact.errorMsg">
+						<div class="alert alert-danger">{{profile.errorMsg}}</div>
+					</div>
+	</form>
+
+  </div>
+
+  
+  <div class="jumbotron text-center" ng-show="profile.loading">
+						<span class="glyphicon glyphicon-repeat spinner">Loading...</span>
+					</div>
+
+					<div class="row show-hide-message" ng-show="contact.successMsg">
+						<div class="alert alert-success">{{profile.successMsg}}</div>
+					</div>
+
+					<br>
+
+					<div class="row show-hide-message" ng-show="contact.errorMsg">
+						<div class="alert alert-danger">{{profile.errorMsg}}</div>
+					</div>
+</div>
+
+
+  <script> 
+
+var modal = document.getElementById('passModal');
+
+
+var btn = document.getElementById("changePassBtn");
+
+
+var span = document.getElementsByClassName("close")[0];
+
+
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+  
+  </script>
 </div>
