@@ -25,11 +25,11 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api', appRoutes);//route for backend requests
 
 //variables
-var port = process.env.PORT || 4000; //changed from 8080 for testing will need to be changed back later
+var port = process.env.PORT || 8080; //changed from 8080 for testing will need to be changed back later
 
 
 //database connection using mongoose
-mongoose.connect('mongodb://localhost:27017/website', function(err){
+mongoose.connect('mongodb://admin:gcsu2018@ds113700.mlab.com:13700/heroku_b8j8lq3g', function(err){
 	if(err){
 		console.log("Not connected to database: " + err);
 	} else{
