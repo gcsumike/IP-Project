@@ -1,13 +1,23 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
+var validate = require('mongoose-validator');
+
+
+var passwordValidator = [
+	validate({
+  		validator: 'matches',
+  		arguments: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/i,
+  		message: "Password must contain 1 lowercase, 1 uppercase, and 1 digit"
+	})
+];
 
 
 //Mongo db schema controls how data is organized with the DB
 //UserSchema determines what attributes a User has in the DB
 var UserSchema = new Schema({
 	username: {type: String, lowercase: true, required: true, unique: true},
-	password: {type: String, required: true},
+	password: {type: String, required: true, validate: passwordValidator},
 	email: {type: String, required: true, lowercase: true, unique: true},
 	msg: {type: String}
 });

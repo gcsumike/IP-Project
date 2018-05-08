@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api', appRoutes);//route for backend requests
 
 //variables
-var port = process.env.PORT || 8080; //changed from 8080 for testing will need to be changed back later
+var port = process.env.PORT || 40000; //changed from 8080 for testing will need to be changed back later
 
 
 //database connection using mongoose
